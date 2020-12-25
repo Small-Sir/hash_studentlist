@@ -155,7 +155,7 @@ Stu* find_node(Stu* head, int id)
 
 Stu* take_off_node(Stu** tail, Stu* temp,Stu** head)
 {
-    Stu* pri = NULL;
+    
     Stu* node = *head;
     if (temp == *head)//头结点
     {
@@ -163,6 +163,7 @@ Stu* take_off_node(Stu** tail, Stu* temp,Stu** head)
     }
     else
     {
+        Stu* pri = NULL;
         while (node != NULL)//遍历找出目标节点的前一个节点
         {
             if (node->next == temp)
@@ -172,12 +173,12 @@ Stu* take_off_node(Stu** tail, Stu* temp,Stu** head)
             }  
             node = node->next;
         }
-        if (temp== *tail)//尾节点
+        if (temp == *tail && pri != NULL)//尾节点
         {
             *tail = pri;
             pri->next = NULL;
         }
-        else//中间节点
+        else if (pri!= NULL)//中间节点
         {
             pri->next = temp->next;
         }
@@ -198,6 +199,7 @@ void del_stu_list(Hash* hash_stu)
     Stu* node = find_node(hash_stu[hash].head, id);
     Stu* temp = take_off_node(&hash_stu[hash].tail, node ,& hash_stu[hash].head);
     free(temp);
+    hash_stu[hash].len--;
     printf("删除成功\n");
 }
 
@@ -219,7 +221,7 @@ void modify_stu(Hash* hash_stu)
     else
     {
         printf("查无此人\n");
-        return NULL;
+        return;
     }
 }
 
@@ -241,7 +243,7 @@ void  serach_stu(Hash* hash_stu)
     else
     {
         printf("查无此人\n");
-        return NULL;
+        return;
     }
         
 }
@@ -262,9 +264,10 @@ void  print_list(Hash* hash_stu)
 {
     for (int i = 0; i < 11; i++)
     {
-       // if (hash_stu[i].len != 0)
+        if (hash_stu[i].len != 0)
         {
             printf("hash_stu[%d]:\n", i);
+            printf("len:%d\t", hash_stu[i].len);
             print_hash(hash_stu[i].head);
         } 
     }
