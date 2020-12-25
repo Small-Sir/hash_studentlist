@@ -6,6 +6,6 @@
 
 int main()
 {
-	menu();
+	stulist_menu();
 	return 0;
 }

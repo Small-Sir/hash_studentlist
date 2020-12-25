@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="hashlist.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="stulist.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hashlist.h" />
+    <ClInclude Include="stulist.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
